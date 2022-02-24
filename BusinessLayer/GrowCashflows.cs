@@ -27,8 +27,8 @@ namespace BusinessLayer
                     income.YearlyAmounts = yearlyAmounts;
                 }
             }
-
         }
+
         public static void GrowExpenses(List<Expense> expenses)
         {
             int currentYear = DateTime.Now.Year;
@@ -51,5 +51,27 @@ namespace BusinessLayer
             }
 
         }
+
+        public static void GrowGoalAmount(Goal goal)
+        {
+            int currentYear = DateTime.Now.Year;
+            if (goal != null)
+            {
+                List<YearlyAmount> yearlyAmounts = new List<YearlyAmount>();
+                Random random = new Random();
+                for (int year = goal.StartYear; year <= goal.EndYear; year++)
+                {
+                    YearlyAmount yearlyAmount = new YearlyAmount
+                    {
+                        Year = year,
+                        //Amount = goal.Amount * Math.Pow(1 + _inflationRate * 0.01, year - currentYear)
+                        Amount = goal.Amount * Math.Pow(1 + random.Next(2,4) * 0.01, year - currentYear)
+                    };
+                    yearlyAmounts.Add(yearlyAmount);
+                }
+                goal.YearlyAmounts = yearlyAmounts;
+            }
+        }
     }
+
 }
