@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities;
 
 namespace AnalyticsAPI.Controllers
 {
@@ -24,7 +25,15 @@ namespace AnalyticsAPI.Controllers
         }
 
         [HttpGet]
-        public int Get()
+        [Route("GetName")]
+        public string GetName()
+        {
+            return "test";
+        }
+
+        [HttpPost]
+        [Route("AnalyzePlan")]
+        public int AnalyzePlan(Plan plan)
         {
             //var rng = new Random();
             //return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -34,7 +43,7 @@ namespace AnalyticsAPI.Controllers
             //    Summary = Summaries[rng.Next(Summaries.Length)]
             //})
             //.ToArray();
-            int result = BusinessLayer.AnalyzePlan.CalculatePos();
+            int result = BusinessLayer.AnalyzePlan.CalculatePos(plan);
             return result;
         }
     }

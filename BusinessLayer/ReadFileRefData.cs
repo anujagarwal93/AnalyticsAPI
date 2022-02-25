@@ -15,7 +15,7 @@ namespace BusinessLayer
             {
                 return _cashRefData;
             }
-            string filePath = @"C:\DevFolder\CashRefData.csv";
+            string filePath = @"..\RefData\CashRefData.csv";
 
             using (StreamReader sr = new StreamReader(new FileStream(filePath, FileMode.Open)))
             {
@@ -45,7 +45,7 @@ namespace BusinessLayer
             {
                 return _equityRefData;
             }
-            string filePath = @"C:\DevFolder\EquityRefData.csv";
+            string filePath = @"..\RefData\EquityRefData.csv";
 
             using (StreamReader sr = new StreamReader(new FileStream(filePath, FileMode.Open)))
             {

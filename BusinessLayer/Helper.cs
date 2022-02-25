@@ -8,7 +8,7 @@ namespace BusinessLayer
 {
     class Helper
     {
-        public static List<YearlyAmount> CalculateTotalIncomeYearly(List<Income> incomes, int endOfAnalysis)
+        public static List<YearlyAmount> CalculateTotalIncomeYearly(List<Cashflow> incomes, int endOfAnalysis)
         {
             List<YearlyAmount> yearlyAmounts = new List<YearlyAmount>();
             for (int year = DateTime.Now.Year; year <= endOfAnalysis; year++)
@@ -27,7 +27,7 @@ namespace BusinessLayer
             }
             return yearlyAmounts;
         }
-        public static List<YearlyAmount> CalculateTotalExpenseYearly(List<Expense> expenses, int endOfAnalysis)
+        public static List<YearlyAmount> CalculateTotalExpenseYearly(List<Cashflow> expenses, int endOfAnalysis)
         {
             List<YearlyAmount> yearlyAmounts = new List<YearlyAmount>();
             for (int year = DateTime.Now.Year; year <= endOfAnalysis; year++)
@@ -47,7 +47,7 @@ namespace BusinessLayer
             return yearlyAmounts;
         }
 
-        public static double ProcessPreRetirement(List<YearlyAmount> incomes, List<YearlyAmount> expenses, int salary,
+        public static double ProcessPreRetirement(List<YearlyAmount> incomes, List<YearlyAmount> expenses, double salary,
             int retYear)
         {
             double lumpSum = 0;
