@@ -24,6 +24,13 @@ namespace AnalyticsAPI.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        [Route("HealthCheck")]
+        public string HealthCheck()
+        {
+            return "Analytics Service is Up!!";
+        }
+
 
         [HttpPost]
         [Route("AnalyzePlan")]
