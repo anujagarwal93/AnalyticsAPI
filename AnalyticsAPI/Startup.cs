@@ -30,7 +30,7 @@ namespace AnalyticsAPI
             {
                 options.SwaggerDoc("v2", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Title = "Plan API",
+                    Title = "AnalyticsAPI",
                     Version = "v1",
                     Description = "Sample service for FP",
                 });
@@ -57,7 +57,17 @@ namespace AnalyticsAPI
             });
 
             app.UseSwagger();
-            app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v2/swagger.json", "Plan Service"));
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v2/swagger.json", "AnalyticsService");
+                options.RoutePrefix = "AnalyticsAPI/swagger";
+                }) ;
+
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("swagger/v2/swagger.json", "AnalyticsService");
+            //    c.RoutePrefix = "SampleApi/swagger";
+            //});
         }
     }
 }

@@ -10,26 +10,20 @@ namespace AnalyticsAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class AnalyticsController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<AnalyticsController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public AnalyticsController(ILogger<AnalyticsController> logger)
         {
             _logger = logger;
         }
 
-        [HttpGet]
-        [Route("GetName")]
-        public string GetName()
-        {
-            return "test";
-        }
 
         [HttpPost]
         [Route("AnalyzePlan")]
