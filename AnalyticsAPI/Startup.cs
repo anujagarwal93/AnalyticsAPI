@@ -32,7 +32,7 @@ namespace AnalyticsAPI
                 {
                     Title = "AnalyticsAPI",
                     Version = "v1",
-                    Description = "Sample service for FP",
+                    Description = "Sample service for FP Analytics",
                 });
             });
         }
