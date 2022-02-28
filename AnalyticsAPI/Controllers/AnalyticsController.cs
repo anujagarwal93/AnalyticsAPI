@@ -24,7 +24,7 @@ namespace AnalyticsAPI.Controllers
         public AnalyticsController(ILogger<AnalyticsController> logger, ITracer tracer)
         {
             _logger = logger;
-            tracer = _tracer;
+            _tracer = tracer;
         }
 
         [HttpGet]
