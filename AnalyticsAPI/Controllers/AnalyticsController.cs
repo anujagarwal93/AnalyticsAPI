@@ -60,7 +60,9 @@ namespace AnalyticsAPI.Controllers
 
             _logger.LogInformation("Running Analytics to return POS");
 
-            int result = BusinessLayer.AnalyzePlan.CalculatePos(plan);
+            BusinessLayer.AnalyzePlan analyze = new BusinessLayer.AnalyzePlan();
+
+            int result = analyze.CalculatePos(plan);
             return result;
         }
     }

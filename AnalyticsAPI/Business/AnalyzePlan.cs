@@ -24,7 +24,7 @@ namespace AnalyticsAPI.BusinessLayer
             analyzeLog = CreateLogger<AnalyzePlan>();
         }
 
-        public static int CalculatePos(Plan plan)
+        public int CalculatePos(Plan plan)
         {
             analyzeLog.LogInformation("Calculating POS");
             int retYear = plan.client.goal.startYear, endOfAnalysis = plan.client.goal.endYear;
