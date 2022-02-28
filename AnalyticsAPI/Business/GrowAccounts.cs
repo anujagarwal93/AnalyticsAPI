@@ -39,8 +39,8 @@ namespace AnalyticsAPI.BusinessLayer
         }
         public static void GetRefData()
         {
-            cashGrowthData = ReadFileRefData.ReadCashRefData();
-            equityGrowthData = ReadFileRefData.ReadEquityRefData();
+            cashGrowthData = ReadFileRefData.ReadCashRefData().Result;
+            equityGrowthData = ReadFileRefData.ReadEquityRefData().Result;
         }
     }
 }
