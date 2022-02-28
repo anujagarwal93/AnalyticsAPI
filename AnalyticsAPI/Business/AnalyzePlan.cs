@@ -4,13 +4,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Microsoft.Extensions.Logging;
 namespace AnalyticsAPI.BusinessLayer
 {
     public class AnalyzePlan
     {
+
+        public static ILoggerFactory LoggerFactory1 { get; } = new LoggerFactory();
+        public static ILogger analyzeLog = null;
+
+        public static ILogger CreateLogger<AnalyzePlan>()
+        {
+            var logger = LoggerFactory1.CreateLogger<AnalyzePlan>();
+            return logger;
+        }
+
+        public AnalyzePlan()
+        {
+            analyzeLog = CreateLogger<AnalyzePlan>();
+        }
+
         public static int CalculatePos(Plan plan)
         {
+            analyzeLog.LogInformation("Calculating POS");
             int retYear = plan.client.goal.startYear, endOfAnalysis = plan.client.goal.endYear;
             double salary = plan.client.salary;
             List<Account> lstAccounts = plan.accounts;
@@ -28,10 +44,12 @@ namespace AnalyticsAPI.BusinessLayer
             double preRetirementValue = Helper.ProcessPreRetirement(yearlyTotalIncomes, yearlyTotalExpenses, salary, retYear);
             for(int iteration = 0; iteration < 99; iteration++)
             {
+                analyzeLog.LogInformation("Starting Iteration - {0}", iteration);
                 bool[] posYearWise = new bool[endOfAnalysis - retYear + 1];
                 List<YearlyAmount> yearlyTotalAccountValue = GrowAccounts.GrowAccount(lstAccounts,iteration, endOfAnalysis,retYear,plan.allocations); //get yearly values for total value of all Accounts
                 for(int year = retYear; year <= endOfAnalysis; year++)
                 {
+                    analyzeLog.LogInformation("Iteration - {0}, Year - {1)", iteration,year);
                     var inc = yearlyTotalIncomes.FirstOrDefault(x => x.Year == year)?.Amount ?? 0;
                     var exp = yearlyTotalExpenses.FirstOrDefault(x => x.Year == year)?.Amount ?? 0;
                     var acctVal = yearlyTotalAccountValue.FirstOrDefault(x => x.Year == year)?.Amount ?? 0;
