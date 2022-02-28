@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Entities;
+using OpenTracing;
 
 namespace AnalyticsAPI.Controllers
 {
@@ -18,10 +19,12 @@ namespace AnalyticsAPI.Controllers
         };
 
         private readonly ILogger<AnalyticsController> _logger;
+        private ITracer _tracer;
 
-        public AnalyticsController(ILogger<AnalyticsController> logger)
+        public AnalyticsController(ILogger<AnalyticsController> logger, ITracer tracer)
         {
             _logger = logger;
+            tracer = _tracer;
         }
 
         [HttpGet]
@@ -44,6 +47,19 @@ namespace AnalyticsAPI.Controllers
             //    Summary = Summaries[rng.Next(Summaries.Length)]
             //})
             //.ToArray();
+            var operationName = "AnalyzePlan";
+            var builder = _tracer.BuildSpan(operationName);
+
+            using (var scope = builder.StartActive(true))
+            {
+                var span = scope.Span;
+
+                var log = $"Analytics started - ";
+                span.Log(log);
+            }
+
+            _logger.LogInformation("Running Analytics to return POS");
+
             int result = BusinessLayer.AnalyzePlan.CalculatePos(plan);
             return result;
         }

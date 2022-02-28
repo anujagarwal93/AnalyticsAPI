@@ -4,15 +4,26 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>54341b79-8489-44fb-b1dd-1dd6ed0f8914</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Jaeger" Version="1.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Kubernetes.Tools.Targets" Version="1.1.0" />
+    <PackageReference Include="OpenTracing.Contrib.NetCore" Version="0.8.0" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="5.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Entities">
+      <HintPath>bin\Debug\netcoreapp3.1\Entities.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 
